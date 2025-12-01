@@ -1,5 +1,6 @@
 import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl';
 import { useEffect, useRef } from 'react';
+import { getSafeImageSource } from '../utils/imageHelpers';
 
 function debounce(func, wait) {
   let timeout;
@@ -339,7 +340,30 @@ class App {
       { image: `https://picsum.photos/seed/21/800/600?grayscale`, text: 'Coastline' },
       { image: `https://picsum.photos/seed/12/800/600?grayscale`, text: 'Palm Trees' }
     ];
-    const galleryItems = items && items.length ? items : defaultItems;
+    const rawItems = items && items.length ? items : defaultItems;
+    const sanitizedItems = rawItems
+      .map((item = {}, index) => {
+        const label = item.text || `Preview ${index + 1}`;
+        const safeImage = getSafeImageSource(item.image, label);
+        return safeImage
+          ? {
+              ...item,
+              text: label,
+              image: safeImage
+            }
+          : null;
+      })
+      .filter(Boolean);
+
+    const galleryItems = sanitizedItems.length
+      ? sanitizedItems
+      : [
+          {
+            text: 'Preview',
+            image: getSafeImageSource('', 'Preview')
+          }
+        ];
+
     this.mediasImages = galleryItems.concat(galleryItems);
     this.medias = this.mediasImages.map((data, index) => {
       return new Media({
