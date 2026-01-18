@@ -1,7 +1,6 @@
 import React, { useRef, useState, Suspense, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
-import * as random from "maath/random/dist/maath-random.esm";
 import styled from "styled-components";
 
 const StyledCanvasWrapper = styled.div`
@@ -24,7 +23,7 @@ const isMobileDevice = () => {
 
 const Stars = (props) => {
   const ref = useRef();
-  const [sphere, setSphere] = useState(() => {
+  const [sphere] = useState(() => {
     try {
       // Reduce particle count on mobile for performance
       const count = isMobileDevice() ? 1500 : 3000;

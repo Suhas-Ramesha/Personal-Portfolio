@@ -12,20 +12,6 @@ const Section = styled.div`
   }
 `;
 
-const Row = styled.button`
-  width: 100%;
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-  color: ${({ theme }) => theme.text_primary};
-  font-weight: 700;
-  letter-spacing: 1px;
-  padding: 18px 8px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-`;
-
 const Panel = styled.div`
   width: 100%;
   padding: 14px 0 22px 0;

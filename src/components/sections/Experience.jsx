@@ -103,7 +103,7 @@ const Experience = () => {
         }
       });
     };
-  }, [experiences]);
+  }, []);
 
   return (
     <Container id="Experience">

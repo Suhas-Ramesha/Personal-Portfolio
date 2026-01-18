@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { projects } from "../../data/constants";
-import ProjectCard from "../cards/ProjectCard";
 import CategoryAccordion from "../CategoryAccordion";
 
 const Container = styled.div`
@@ -55,23 +54,7 @@ const Desc = styled.div`
   }
 `;
 
-// Old toggle UI removed in favor of FlowingMenu
-
-const CardContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 28px;
-  flex-wrap: wrap;
-`;
-const CategoryPanel = styled.div`
-  width: 100%;
-  max-width: 1100px;
-  margin: 12px auto 0 auto;
-`;
-
 const Projects = () => {
-  const [toggle, setToggle] = useState("all");
   return (
     <Container id="Projects">
       <Wrapper>
