@@ -7,6 +7,9 @@ const Section = styled.div`
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
+  @media (min-width: 1400px) {
+    max-width: 1400px;
+  }
 `;
 
 const Row = styled.button`
@@ -26,29 +29,68 @@ const Row = styled.button`
 const Panel = styled.div`
   width: 100%;
   padding: 14px 0 22px 0;
+  @media (max-width: 768px) {
+    padding: 12px 0 18px 0;
+  }
+  @media (max-width: 480px) {
+    padding: 10px 0 16px 0;
+  }
 `;
 
 const CardContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: stretch;
   gap: 28px;
   flex-wrap: wrap;
+  @media (max-width: 768px) {
+    gap: 20px;
+    justify-content: center;
+  }
+  @media (max-width: 480px) {
+    gap: 16px;
+  }
 `;
 
 export default function CategoryAccordion({ projects }) {
   const categories = useMemo(() => ([
     { key: "all", label: "ALL" },
-    { key: "web app", label: "WEB APP'S" },
-    { key: "android app", label: "ANDROID APP'S" },
+    { key: "web", label: "WEB" },
+    { key: "app", label: "APP" },
     { key: "machine learning", label: "MACHINE LEARNING" },
+    { key: "automation", label: "AUTOMATION" },
   ]), []);
 
   const [open, setOpen] = useState("all");
 
   const filtered = (cat) => {
     if (cat === "all") return projects;
-    return projects.filter(p => p.category === cat);
+    const filterKey = cat.toLowerCase();
+    // Support for multiple categories like "ml & web" or "ml and web"
+    return projects.filter(p => {
+      const category = (p.category || "").toLowerCase();
+      
+      // Handle exact match
+      if (category === filterKey) return true;
+      
+      // Handle "machine learning" and "ml" synonyms
+      const isML = filterKey === "machine learning" || filterKey === "ml";
+      const categoryHasML = category.includes("ml") || category.includes("machine learning");
+      if (isML && categoryHasML) return true;
+      
+      // Handle multiple categories (e.g., "ml & web", "web & ml", "ml and web")
+      if (category.includes("&") || category.includes(" and ")) {
+        // Split by & or "and" and check each part
+        const parts = category.split(/[&]| and /).map(p => p.trim());
+        return parts.some(part => {
+          if (isML) return part === "ml" || part === "machine learning";
+          return part === filterKey;
+        });
+      }
+      
+      // Handle simple contains check
+      return category.includes(filterKey);
+    });
   };
 
   return (

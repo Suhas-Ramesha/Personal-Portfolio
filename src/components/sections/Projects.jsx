@@ -13,6 +13,9 @@ const Container = styled.div`
   position: rlative;
   z-index: 1;
   align-items: center;
+  @media (min-width: 1400px) {
+    padding: 0px 24px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -24,6 +27,9 @@ const Wrapper = styled.div`
   width: 100%;
   max-width: 1100px;
   gap: 12px;
+  @media (min-width: 1400px) {
+    max-width: 1400px;
+  }
   @media (max-width: 960px) {
     flex-direction: column;
   }

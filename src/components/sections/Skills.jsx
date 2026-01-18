@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { skills } from "../../data/constants";
 import { Tilt } from "react-tilt";
+import SafeImage from "../SafeImage";
 
 const Container = styled.div`
   display: flex;
@@ -21,6 +22,9 @@ const Wrapper = styled.div`
   width: 100%;
   max-width: 1100px;
   gap: 12px;
+  @media (min-width: 1400px) {
+    max-width: 1400px;
+  }
   @media (max-width: 960px) {
     flex-direction: column;
   }
@@ -110,9 +114,10 @@ const SkillItem = styled.div`
     padding: 6px 12px;
   }
 `;
-const SkillImage = styled.img`
+const SkillImage = styled(SafeImage)`
   width: 24px;
   height: 24px;
+  object-fit: contain;
 `;
 
 const Skills = () => {
@@ -131,13 +136,16 @@ const Skills = () => {
 
         <SkillsContainer>
           {skills.map((skill, index) => (
-            <Tilt>
-              <Skill key={`skill-${index}`}>
+            <Tilt key={`tilt-${index}`}>
+              <Skill>
                 <SkillTitle>{skill.title}</SkillTitle>
                 <SkillList>
                   {skill.skills.map((item, index_x) => (
                     <SkillItem key={`skill-x-${index_x}`}>
-                      <SkillImage src={item.image} />
+                      <SkillImage
+                        src={item.image} 
+                        alt={item.name}
+                      />
                       {item.name}
                     </SkillItem>
                   ))}

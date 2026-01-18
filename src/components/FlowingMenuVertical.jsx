@@ -73,7 +73,7 @@ function MenuItem({ link = '#', text, image, value, onSelect }) {
   return (
     <div className="flex-1 relative overflow-hidden text-center shadow-[0_-1px_0_0_rgba(255,255,255,0.2)]" ref={itemRef}>
       <a
-        className="flex items-center justify-center h-[64px] relative cursor-pointer uppercase no-underline font-semibold text-white text-[4vh] hover:text-[#060010]"
+        className="flex items-center justify-center h-[56px] md:h-[64px] relative cursor-pointer uppercase no-underline font-semibold text-white text-[clamp(1.5rem,4vw,2.5rem)] md:text-[4vh] hover:text-[#060010]"
         href={link}
         onClick={(e) => {
           e.preventDefault();
@@ -83,6 +83,12 @@ function MenuItem({ link = '#', text, image, value, onSelect }) {
         }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onTouchStart={(e) => {
+          // Handle touch for mobile
+          e.preventDefault();
+          hideMarquee();
+          onSelect && onSelect(value);
+        }}
       >
         {text}
       </a>

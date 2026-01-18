@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import CircularGallery from "../CircularGallery";
+import SafeImage from "../SafeImage";
 
 const Card = styled.div`
   position: relative;
   width: 330px;
-  height: 490px;
+  height: auto;
+  min-height: 420px;
   background-color: ${({ theme }) => theme.card};
   cursor: pointer;
   border-radius: 10px;
@@ -16,18 +17,25 @@ const Card = styled.div`
   flex-direction: column;
   gap: 14px;
   transition: all 0.5s ease-in-out;
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 330px;
+    min-height: 400px;
+    padding: 20px 16px;
+  }
+  @media (max-width: 480px) {
+    max-width: 100%;
+    padding: 18px 14px;
+    min-height: 380px;
+  }
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 0 50px 4px rgba(0, 0, 0, 0.6);
     filter: brightness(1.1);
+    @media (max-width: 768px) {
+      transform: translateY(-5px);
+    }
   }
-`;
-const GalleryBg = styled.div`
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.18;
-  pointer-events: none;
 `;
 const Content = styled.div`
   position: relative;
@@ -59,6 +67,12 @@ const Title = styled.div`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 const Date = styled.div`
   font-size: 12px;
@@ -66,6 +80,9 @@ const Date = styled.div`
   font-weight: 400;
   color: ${({ theme }) => theme.text_secondary + 80};
   @media only screen and (max-width: 768px) {
+    font-size: 11px;
+  }
+  @media (max-width: 480px) {
     font-size: 10px;
   }
 `;
@@ -76,16 +93,26 @@ const Description = styled.div`
   margin-top: 8px;
   display: -webkit-box;
   max-width: 100%;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
+  font-size: 14px;
+  line-height: 1.4;
+  @media (max-width: 768px) {
+    font-size: 13px;
+    -webkit-line-clamp: 4;
+  }
+  @media (max-width: 480px) {
+    font-size: 12px;
+    -webkit-line-clamp: 3;
+  }
 `;
 const Members = styled.div`
   display: flex;
   align-items: center;
   padding-left: 10px;
 `;
-const Avatar = styled.img`
+const Avatar = styled(SafeImage)`
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -93,6 +120,7 @@ const Avatar = styled.img`
   background-color: ${({ theme }) => theme.white};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border: 3px solid ${({ theme }) => theme.card};
+  object-fit: cover;
 `;
 const Button = styled.a`
   color: ${({ theme }) => theme.primary};
@@ -102,15 +130,24 @@ const Button = styled.a`
 `;
 
 const ProjectCard = ({ project }) => {
-  const galleryItems = (project.gallery && project.gallery.length
-    ? project.gallery
-    : (project.image ? [{ image: project.image, text: project.title }] : [])
-  );
   return (
     <Card>
-      <GalleryBg>
-        <CircularGallery items={galleryItems} />
-      </GalleryBg>
+      {project.image && (
+        <SafeImage 
+          src={project.image} 
+          alt={project.title}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: 0.15,
+            zIndex: 0,
+            pointerEvents: 'none'
+          }}
+        />
+      )}
       <Content>
         <Tags></Tags>
         <Details>
@@ -119,8 +156,12 @@ const ProjectCard = ({ project }) => {
           <Description>{project.description}</Description>
         </Details>
         <Members>
-          {project.member?.map((member) => (
-            <Avatar src={member.img} />
+          {project.member?.map((member, index) => (
+            <Avatar
+              key={`member-${index}`} 
+              src={member.img} 
+              alt={member.name || 'Team member'}
+            />
           ))}
         </Members>
         <Button href={project.github} target="_blank">

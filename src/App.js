@@ -12,10 +12,22 @@ import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
 
 const Body = styled.div`
-  background-color: ${({ theme }) => theme.bg};
+  background: linear-gradient(
+    135deg,
+    #090917 0%,
+    #0a0a1e 25%,
+    #0f0f29 50%,
+    #1a0a2e 75%,
+    #16213e 100%
+  );
+  background-attachment: fixed;
+  min-height: 100vh;
   width: 100%;
+  max-width: 100vw;
+  padding-top: 70px;
   overflow-x: hidden;
   position: relative;
+  box-sizing: border-box;
 `;
 
 const Wrapper = styled.div`
@@ -31,15 +43,18 @@ const Wrapper = styled.div`
       rgba(0, 70, 209, 0.15) 100%
     );
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 100%);
 `;
 
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
-      <BrowserRouter>
-        <Navbar />
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Body>
+          <Navbar />
           <StartCanvas />
           <div>
             <Hero />

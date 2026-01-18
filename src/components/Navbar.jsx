@@ -14,8 +14,10 @@ const Navbar = () => {
   return (
     <div
       style={{
-        position: "sticky",
+        position: "fixed",
         top: 0,
+        left: 0,
+        right: 0,
         zIndex: 1000,
         padding: "6px 0",
         backgroundColor: "transparent",

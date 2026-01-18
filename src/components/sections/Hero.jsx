@@ -20,13 +20,21 @@ const HeroContainer = styled.div`
   position: relative;
   padding: 80px 30px;
   z-index: 1;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 
   @media (max-width: 960px) {
     padding: 66px 16px;
+    width: 100%;
+    max-width: 100%;
   }
 
   @media (max-width: 640px) {
-    padding: 32px 16px;
+    padding: 32px 12px;
+    width: 100%;
+    max-width: 100%;
   }
 
   clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 95%, 0 100%);
@@ -38,14 +46,30 @@ const HeroInnerContainer = styled.div`
   align-items: center;
   width: 100%;
   max-width: 1100px;
+  box-sizing: border-box;
+  padding: 0;
+
+  @media (min-width: 1400px) {
+    max-width: 1400px;
+  }
 
   @media (max-width: 960px) {
     flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+  @media (max-width: 640px) {
+    padding: 0;
   }
 `;
 const HeroLeftContainer = styled.div`
   width: 100%;
+  max-width: 100%;
   order: 1;
+  box-sizing: border-box;
+  padding: 0;
+  overflow-x: hidden;
   @media (max-width: 960px) {
     order: 2;
     margin-bottom: 30px;
@@ -53,24 +77,38 @@ const HeroLeftContainer = styled.div`
     gap: 6px;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 8px;
+  }
+  @media (max-width: 640px) {
+    padding: 0 4px;
+    margin-bottom: 20px;
   }
 `;
 const HeroRightContainer = styled.div`
   width: 100%;
+  max-width: 100%;
   order: 2;
   display: flex;
   justify-content: end;
+  box-sizing: border-box;
   @media (max-width: 960px) {
     order: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-contents: center;
-    margin-bottom: 80px;
+    justify-content: center;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
   }
 
   @media (max-width: 640px) {
-    margin-bottom: 30px;
+    margin-bottom: 24px;
+    width: 100%;
+    max-width: 100%;
   }
 `;
 
@@ -83,15 +121,29 @@ const TextLoop = styled.div`
   gap: 12px;
   color: ${({ theme }) => theme.text_primary};
   line-height: 68px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
 
   @media (max-width: 960px) {
     text-align: center;
-  }
-
-  @media (max-width: 960px) {
+    justify-content: center;
     font-size: 22px;
     line-height: 48px;
     margin-bottom: 16px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 8px;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 18px;
+    line-height: 36px;
+    gap: 8px;
+    padding: 0 4px;
   }
 `;
 
@@ -105,14 +157,27 @@ const SubTitle = styled.div`
   line-height: 32px;
   margin-bottom: 42px;
   color: ${({ theme }) => theme.text_primary + 95};
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: break-word;
 
   @media (max-width: 960px) {
     text-align: center;
-  }
-
-  @media (max-width: 960px) {
     font-size: 16px;
     line-height: 32px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 8px;
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 14px;
+    line-height: 24px;
+    padding: 0 4px;
+    margin-bottom: 24px;
   }
 `;
 
@@ -126,6 +191,9 @@ const ResumeButton = styled.a`
   max-width: 300px;
   text-align: center;
   padding: 16px 0;
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: block;
 
   background: hsla(271, 100%, 50%, 1);
   background: linear-gradient(
@@ -213,10 +281,12 @@ const Hero = () => {
         <motion.div {...headContainerAnimation}>
           <HeroInnerContainer>
             <HeroLeftContainer>
-              <motion.div {...headTextAnimation}>
-                <ScrollFloat textClassName="text-white">
-                  {`Hi, I am ${Bio.name}`}
-                </ScrollFloat>
+              <motion.div {...headTextAnimation} style={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box' }}>
+                <div style={{ width: '100%', maxWidth: '100%', overflow: 'hidden', boxSizing: 'border-box' }}>
+                  <ScrollFloat textClassName="text-white" containerClassName="w-full max-w-full">
+                    {`Hi, I am ${Bio.name}`}
+                  </ScrollFloat>
+                </div>
                 <TextLoop>
                   I am a
                   <Span>
@@ -231,7 +301,7 @@ const Hero = () => {
                 </TextLoop>
               </motion.div>
 
-              <motion.div {...headContentAnimation}>
+              <motion.div {...headContentAnimation} style={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box' }}>
                 <SubTitle>{Bio.description}</SubTitle>
               </motion.div>
 

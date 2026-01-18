@@ -66,9 +66,13 @@ const ScrollFloat = ({
   }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger]);
 
   return (
-    <h2 ref={containerRef} className={`my-5 overflow-hidden ${containerClassName}`}>
+    <h2 ref={containerRef} className={`my-5 overflow-hidden w-full max-w-full box-border ${containerClassName}`}>
       <span
-        className={`inline-block whitespace-nowrap text-[clamp(1.6rem,4vw,3rem)] leading-[1.5] ${textClassName}`}
+        className={`inline-block text-[clamp(1.6rem,4vw,3rem)] leading-[1.5] w-full max-w-full box-border break-words ${textClassName}`}
+        style={{
+          wordBreak: 'break-word',
+          overflowWrap: 'break-word'
+        }}
       >
         {splitText}
       </span>
