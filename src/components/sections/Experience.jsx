@@ -121,7 +121,7 @@ const Experience = () => {
         <VerticalTimeline ref={timelineRef}>
           {experiences.map((experience, index) => (
             <ExperienceCard
-              key={`experience-${index}`}
+              key={experience.id ?? index}
               experience={experience}
             />
           ))}
