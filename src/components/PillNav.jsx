@@ -407,7 +407,7 @@ const PillNav = ({
           WebkitOverflowScrolling: 'touch'
         }}
       >
-        <ul className="list-none m-0 p-[3px] flex flex-col gap-[6px]">
+        <ul className="list-none m-0 p-[3px] flex flex-col gap-[6px] w-full">
           {items.map(item => {
             const defaultStyle = {
               background: 'var(--pill-bg, #fff)',
