@@ -52,10 +52,12 @@ const Description = styled.div`
   width: 100%;
   font-size: 15px;
   font-weight: 400;
+  line-height: 1.6;
   color: ${({ theme }) => theme.text_primary + 99};
   margin-bottom: 10px;
   @media only screen and (max-width: 768px) {
     font-size: 12px;
+    line-height: 1.55;
   }
 `;
 const Skills = styled.div`
@@ -65,8 +67,10 @@ const Skills = styled.div`
   margin-top: -10px;
 `;
 const Span = styled.div`
-  display: -webkit-box;
+  display: block;
   max-width: 100%;
+  overflow: visible;
+  white-space: normal;
 `;
 
 const Skill = styled.div`

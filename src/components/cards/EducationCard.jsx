@@ -67,8 +67,10 @@ const Grade = styled.div`
   }
 `;
 const Span = styled.div`
-  display: -webkit-box;
+  display: block;
   max-width: 100%;
+  overflow: visible;
+  white-space: normal;
 `;
 
 const EducationCard = ({ education }) => {

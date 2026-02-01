@@ -397,10 +397,14 @@ const PillNav = ({
 
       <div
         ref={mobileMenuRef}
-        className="md:hidden absolute top-[3em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"
+        className="md:hidden absolute left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"
         style={{
           ...cssVars,
-          background: 'var(--base, #f0f0f0)'
+          background: 'var(--base, #f0f0f0)',
+          top: 'calc(var(--nav-h) + 12px)',
+          maxHeight: 'calc(100vh - var(--nav-h) - 24px)',
+          overflowY: 'auto',
+          WebkitOverflowScrolling: 'touch'
         }}
       >
         <ul className="list-none m-0 p-[3px] flex flex-col gap-[3px]">
@@ -456,5 +460,4 @@ const PillNav = ({
 };
 
 export default PillNav;
-
 
