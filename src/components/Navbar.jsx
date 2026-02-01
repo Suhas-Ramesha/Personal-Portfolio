@@ -25,7 +25,7 @@ const Navbar = () => {
       }}
     >
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-        <div style={{ position: "relative", display: "inline-block" }}>
+        <div style={{ position: "relative", display: "block", width: "100%" }}>
           <GlassSurface
             borderRadius={22}
             opacity={0.40}

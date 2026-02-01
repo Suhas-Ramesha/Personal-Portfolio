@@ -423,7 +423,7 @@ const PillNav = ({
             };
 
             const linkClasses =
-              'block w-full py-3 px-7 text-[16px] font-semibold rounded-[50px] transition-all duration-200 ease-[cubic-bezier(0.25,0.1,0.25,1)] text-center';
+              'block w-full py-3 px-5 text-[16px] font-semibold rounded-[50px] transition-all duration-200 ease-[cubic-bezier(0.25,0.1,0.25,1)] text-center';
 
             return (
               <li key={item.href} className="w-full">
