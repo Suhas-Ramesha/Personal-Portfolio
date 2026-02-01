@@ -89,22 +89,18 @@ const Date = styled.div`
 const Description = styled.div`
   font-weight: 400;
   color: ${({ theme }) => theme.text_secondary + 99};
-  overflow: hidden;
   margin-top: 8px;
-  display: -webkit-box;
   max-width: 100%;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
+  overflow: visible;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.55;
   @media (max-width: 768px) {
     font-size: 13px;
-    -webkit-line-clamp: 4;
+    line-height: 1.5;
   }
   @media (max-width: 480px) {
     font-size: 12px;
-    -webkit-line-clamp: 3;
+    line-height: 1.45;
   }
 `;
 const Members = styled.div`

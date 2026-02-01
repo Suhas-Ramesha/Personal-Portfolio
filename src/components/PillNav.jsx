@@ -274,7 +274,7 @@ const PillNav = ({
 
         <div
           ref={navItemsRef}
-          className={`relative items-center rounded-full ${showLogo ? 'hidden md:flex ml-2' : 'flex'} `}
+          className={`relative items-center rounded-full ${showLogo ? 'hidden md:flex ml-2' : 'hidden md:flex'} `}
           style={{
             height: 'var(--nav-h)',
             background: navBackground ?? 'var(--base, #000)'
@@ -460,4 +460,3 @@ const PillNav = ({
 };
 
 export default PillNav;
-
