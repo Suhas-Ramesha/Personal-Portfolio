@@ -407,7 +407,7 @@ const PillNav = ({
           WebkitOverflowScrolling: 'touch'
         }}
       >
-        <ul className="list-none m-0 p-[3px] flex flex-col gap-[3px]">
+        <ul className="list-none m-0 p-[3px] flex flex-col gap-[6px]">
           {items.map(item => {
             const defaultStyle = {
               background: 'var(--pill-bg, #fff)',
@@ -423,10 +423,10 @@ const PillNav = ({
             };
 
             const linkClasses =
-              'block py-3 px-4 text-[16px] font-medium rounded-[50px] transition-all duration-200 ease-[cubic-bezier(0.25,0.1,0.25,1)]';
+              'block w-full py-3 px-5 text-[16px] font-semibold rounded-[50px] transition-all duration-200 ease-[cubic-bezier(0.25,0.1,0.25,1)] text-center';
 
             return (
-              <li key={item.href}>
+              <li key={item.href} className="w-full">
                 {isRouterLink(item.href) ? (
                   <Link
                     to={item.href}

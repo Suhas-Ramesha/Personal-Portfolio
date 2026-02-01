@@ -92,15 +92,15 @@ const Description = styled.div`
   margin-top: 8px;
   max-width: 100%;
   overflow: visible;
-  font-size: 14px;
-  line-height: 1.55;
+  font-size: 16px;
+  line-height: 1.6;
   @media (max-width: 768px) {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 15px;
+    line-height: 1.55;
   }
   @media (max-width: 480px) {
-    font-size: 12px;
-    line-height: 1.45;
+    font-size: 14px;
+    line-height: 1.5;
   }
 `;
 const Members = styled.div`
