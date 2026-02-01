@@ -21,25 +21,11 @@ const Navbar = () => {
         zIndex: 1000,
         padding: "6px 0",
         backgroundColor: "transparent",
-        width: "100%",
-        maxWidth: "100vw",
-        overflowX: "hidden"
+        width: "100%"
       }}
     >
-      <div style={{ 
-        display: "flex", 
-        justifyContent: "center", 
-        width: "100%",
-        maxWidth: "100%",
-        padding: "0 16px",
-        boxSizing: "border-box"
-      }}>
-        <div style={{ 
-          position: "relative", 
-          display: "inline-block",
-          width: "100%",
-          maxWidth: "100%"
-        }}>
+      <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+        <div style={{ position: "relative", display: "inline-block" }}>
           <GlassSurface
             borderRadius={22}
             opacity={0.40}

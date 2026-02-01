@@ -231,7 +231,7 @@ const PillNav = ({
   return (
     <div className="relative z-[1000] w-full">
       <nav
-        className={`w-full flex items-center ${showLogo ? 'justify-between md:justify-start' : 'justify-end md:justify-center'} box-border px-4 md:px-0 ${className}`}
+        className={`w-full flex items-center ${showLogo ? 'justify-between md:justify-start' : 'justify-center'} box-border px-4 md:px-0 ${className}`}
         aria-label="Primary"
         style={cssVars}
       >
@@ -274,7 +274,7 @@ const PillNav = ({
 
         <div
           ref={navItemsRef}
-          className={`relative items-center rounded-full hidden md:flex ${showLogo ? 'ml-2' : ''}`}
+          className={`relative items-center rounded-full ${showLogo ? 'hidden md:flex ml-2' : 'flex'} `}
           style={{
             height: 'var(--nav-h)',
             background: navBackground ?? 'var(--base, #000)'
@@ -377,12 +377,11 @@ const PillNav = ({
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
           aria-expanded={isMobileMenuOpen}
-          className="md:hidden rounded-full border-0 flex flex-col items-center justify-center gap-1 cursor-pointer p-0 relative ml-auto"
+          className="md:hidden rounded-full border-0 flex flex-col items-center justify-center gap-1 cursor-pointer p-0 relative"
           style={{
             width: 'var(--nav-h)',
             height: 'var(--nav-h)',
-            background: 'var(--base, #000)',
-            flexShrink: 0
+            background: 'var(--base, #000)'
           }}
         >
           <span
@@ -398,7 +397,7 @@ const PillNav = ({
 
       <div
         ref={mobileMenuRef}
-        className="md:hidden absolute top-[calc(var(--nav-h)+12px)] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top max-w-[calc(100vw-32px)]"
+        className="md:hidden absolute top-[3em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"
         style={{
           ...cssVars,
           background: 'var(--base, #f0f0f0)'
